@@ -15,6 +15,7 @@
 
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/blog-home.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
 
 </head>
 
@@ -33,7 +34,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Блог</a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Категории</a></li>
+                        <li><a href="{{route('admin.category.index')}}">Категории</a></li>
                         <li><a href="#">Материалы</a></li>
                     </ul>
                 </li>
