@@ -168,7 +168,7 @@ return [
          * Package Service Providers...
          */
         Unisharp\Ckeditor\ServiceProvider::class,
-
+        App\Providers\BlogServiceProvider::class,
         /*
          * Application Service Providers...
          */
