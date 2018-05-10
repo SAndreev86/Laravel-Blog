@@ -41,7 +41,7 @@
             <div class="col-sm-6">
                 <a href="{{route('admin.articles.create')}}" class="btn btn-block btn-default">Создать материал</a>
                 @foreach($articles as $article)
-                    <a href="{{route('admin.category.edit', $article)}}" class="list-group-item">
+                    <a href="{{route('admin.articles.edit', $article)}}" class="list-group-item">
                         <h4 class="list-group-item-heading">{{$article->title}}</h4>
                         <p class="list-group-item-text">{{$article->categories()->pluck('title')->implode(', ')}}</p>
                     </a>

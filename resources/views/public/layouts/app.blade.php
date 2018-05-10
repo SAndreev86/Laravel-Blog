@@ -5,10 +5,11 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
+    <meta name="description" content="@yield('meta_description')">
+    <meta name="keywords" content="@yield('meta_keywords')">
     <meta name="author" content="">
 
-    <title>Blog Home - Start Bootstrap Template</title>
+    <title>@yield('meta_title')</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -87,7 +88,7 @@
             </div>
 
             <!-- Categories Widget -->
-            @include('layouts.categories')
+            @include('public.layouts.categories')
 
             <!-- Side Widget -->
             <div class="card my-4">

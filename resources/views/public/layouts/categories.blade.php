@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <ul class="list-unstyled mb-0">
-                        @include('layouts.categories_list', [
+                        @include('public.layouts.categories_list', [
                             'categories' => $categories,
                             'delimiter' => ''
                         ])
