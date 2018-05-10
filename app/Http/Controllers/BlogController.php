@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Article;
 use App\Category;
 use App\User;
+use App\Comment;
 
 
 
@@ -14,7 +15,7 @@ class BlogController extends Controller
 
     public function index() {
         return view('public.index', [
-            'articles' => Article::where('published', 1)->orderBy('updated_at', 'desc')->paginate(12)
+            'articles' => Article::with('user')->where('published', 1)->orderBy('updated_at', 'desc')->paginate(12)
         ]);
     }
 
@@ -24,21 +25,25 @@ class BlogController extends Controller
 
         return view('public.category', [
             'category' => $category,
-            'articles' => $category->articles()->where('published', 1)->orderBy('updated_at', 'desc')->paginate(12)
+            'articles' => $category->articles()->with('user')->where('published', 1)->orderBy('updated_at', 'desc')->paginate(12)
         ]);
     }
 
     public function user($id) {
 
         return view('public.user', [
-            'articles' => Article::where('created_by', $id)->where('published', 1)->orderBy('updated_at', 'desc')->paginate(12),
-            'user' => User::where('id', $id)->first()
+            'articles' => Article::with('user')->where('created_by', $id)->where('published', 1)->orderBy('updated_at', 'desc')->paginate(12),
         ]);
     }
 
     public function article($slug) {
+
+        $article = Article::with('user')->where('slug', $slug)->first();
+
         return view('public.article', [
-            'article' => Article::where('slug', $slug)->first()
+            'article' => $article,
+
+            'comments' => Comment::with('user')->where('article', $article->id)->get()
         ]);
     }
 }

@@ -1,12 +1,8 @@
 @extends('public.layouts.app')
 
-@section('meta_title', $user->name)
-
 @section('content')
     <div class="col-md-8">
-        <h1 class="my-4">
-            {{$user->name}}
-        </h1>
+
     @forelse($articles as $article)
         <!-- Blog Post -->
             <div class="card mb-4">
@@ -18,7 +14,7 @@
                 </div>
                 <div class="card-footer text-muted">
                     Добавлено {{$article->updated_at}} by
-                    <a href="{{route("user", Auth::id())}}">{{ $user->name }}</a>
+                    <a href="{{route("user", $article->user->id)}}">{{ $article->user->name }}</a>
                 </div>
             </div>
         @empty

@@ -18,7 +18,7 @@
                 </div>
                 <div class="card-footer text-muted">
                     Добавлено {{$article->updated_at}} by
-                    <a href="{{route("user", Auth::id())}}">{{ Auth::user()->name }}</a>
+                    <a href="{{route("user", $article->user->id)}}">{{ $article->user->name }}</a>
                 </div>
             </div>
         @empty

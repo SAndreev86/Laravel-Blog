@@ -19,6 +19,8 @@ Route::get('/user/{id?}', 'BlogController@user')->name('user');
 Route::get('/category/{slug?}', 'BlogController@category')->name('category');
 Route::get('/article/{slug?}', 'BlogController@article')->name('article');
 
+Route::resource('/comment', 'CommentController');
+
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth']], function() {
     Route::get('/', 'DashboardController@dashboard')->name('admin.index');
     Route::resource('/category', 'CategoryController', ['as' => 'admin']);
