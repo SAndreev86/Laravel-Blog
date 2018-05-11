@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blog Home - Start Bootstrap Template</title>
+    <title>Панель администратора</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -24,52 +24,50 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <a class="navbar-brand" href="/">Блог backend разработчика</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <ul class="nav navbar-nav">
-                <li>
-                    <a href="{{route('admin.index')}}">Панель состояния</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('admin.index')}}">Панель состояния</a>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Блог</a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{route('admin.category.index')}}">Категории</a></li>
-                        <li><a href="{{route('admin.articles.index')}}">Материалы</a></li>
-                    </ul>
+
+                <li class="nav-item dropdown">
+                    <a  href="#" id="navbarDropdownBlog" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Блог <span class="caret"></span></a>
+
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog" >
+                        <a class="dropdown-item" href="{{route('admin.category.index')}}">Категории</a>
+                        <a class="dropdown-item" href="{{route('admin.articles.index')}}">Материалы</a>
+                    </div>
                 </li>
+
             </ul>
         </div>
 
         <div class="collapse navbar-collapse" id="navbarResponsive">
 
+
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
                 @guest
-                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Вход</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Регистрация</a></li>
                 @else
-                    <li class="dropdown">
-                        <a class="nav-link" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                            {{ Auth::user()->name }} <span class="caret"></span>
-                        </a>
+                    <li class="nav-item dropdown">
+                        <a  href="#" id="navbarDropdownLogout" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}<span class="caret"></span></a>
 
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownLogout" >
+                            <a class="dropdown-item"  href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Выход</a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </li>
-                        </ul>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </div>
                     </li>
                 @endguest
             </ul>
@@ -84,7 +82,7 @@
 
 
 <!-- Footer -->
-<footer class="py-5 bg-dark">
+<footer class="py-5 bg-dark footer navbar-fixed-bottom">
     <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
     </div>
@@ -94,7 +92,6 @@
 <!-- Bootstrap core JavaScript -->
 <script src="{{ asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
 <script>
-    CKEDITOR.replace( 'description_short' );
     CKEDITOR.replace( 'description' );
 </script>
 

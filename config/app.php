@@ -168,6 +168,9 @@ return [
          * Package Service Providers...
          */
         Unisharp\Ckeditor\ServiceProvider::class,
+        Spatie\Glide\GlideServiceProvider::class,
+        Dan\UploadImage\UploadImageServiceProvider::class,
+
         App\Providers\BlogServiceProvider::class,
         /*
          * Application Service Providers...
@@ -226,6 +229,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        'GlideImage' => Spatie\Glide\GlideImageFacade::class,
+        'UploadImage' => Dan\UploadImage\UploadImageFacade::class,
 
     ],
 

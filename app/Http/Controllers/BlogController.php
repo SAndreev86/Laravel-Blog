@@ -7,13 +7,15 @@ use App\Article;
 use App\Category;
 use App\User;
 use App\Comment;
-
+use UploadImage;
+use Dan\UploadImage\Exceptions\UploadImageException;
 
 
 class BlogController extends Controller
 {
 
     public function index() {
+
         return view('public.index', [
             'articles' => Article::with('user')->where('published', 1)->orderBy('updated_at', 'desc')->paginate(12)
         ]);

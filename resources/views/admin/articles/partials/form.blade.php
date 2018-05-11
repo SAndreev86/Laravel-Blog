@@ -12,6 +12,10 @@
 <label for="">Заголовок</label>
 <input type="text" class="form-control" name="title" placeholder="Заголовок новости" value="{{$article->title or ""}}" required>
 
+<label for="">Превью</label>
+<input type="file" name="image" value="{{URL::to('/')}}{{$article->image or ''}}"><br>
+
+
 <label for="">Slug (Уникальное значение)</label>
 <input class="form-control" type="text" name="slug" placeholder="Автоматическая генерация" value="{{$article->slug or ""}}" readonly="">
 
@@ -21,7 +25,7 @@
 </select>
 
 <label for="">Краткое описание</label>
-<textarea class="form-control" id="description_short" name="description_short">{{$article->description_short or ""}}</textarea>
+<textarea class="form-control" id="" name="description_short">{{$article->description_short or ""}}</textarea>
 
 <label for="">Полное описание</label>
 <textarea class="form-control" id="description" name="description">{{$article->description or ""}}</textarea>

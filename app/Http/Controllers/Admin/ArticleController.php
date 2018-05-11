@@ -6,6 +6,8 @@ use App\Article;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use UploadImage;
+use Dan\UploadImage\Exceptions\UploadImageException;
 
 class ArticleController extends Controller
 {
@@ -43,7 +45,19 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        $article = Article::create($request->all());
+
+        $arrayRequest = $request->all();
+
+        // Upload and save image.
+        try {
+            // Upload and save image.
+            $arrayRequest['image'] = UploadImage::upload($arrayRequest['image'], 'article')->getImageName();
+        } catch (UploadImageException $e) {
+
+            return back()->withInput()->withErrors(['image', $e->getMessage()]);
+        }
+
+        $article = Article::create($arrayRequest);
 
         // Categories
         if($request->input('categories')) :
@@ -72,6 +86,9 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
+
+        $article['image'] = UploadImage::load('article').$article['image'];
+
         return view('admin.articles.edit', [
             'article'    => $article,
             'categories' => Category::with('children')->where('parent_id', 0)->get(),
@@ -88,13 +105,31 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        $article->update($request->except('slug'));
+
+        $arrayRequest = $request->all();
+        unset($arrayRequest['slug']);
+
+        if(!empty($arrayRequest['image'])) {
+            try {
+                $arrayRequest['image'] = UploadImage::upload($arrayRequest['image'], 'article')->getImageName();
+
+                if(!empty($article->image)) {
+                    UploadImage::delete($article->image, 'article');
+                }
+
+            } catch (UploadImageException $e) {
+                return back()->withInput()->withErrors(['image', $e->getMessage()]);
+            }
+        }
+
+        $article->update($arrayRequest);
 
         // Categories
         $article->categories()->detach();
-        if($request->input('categories')) :
+
+        if($request->input('categories')) {
             $article->categories()->attach($request->input('categories'));
-        endif;
+        }
 
         return redirect()->route('admin.articles.index');
     }
@@ -108,6 +143,11 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
         $article->categories()->detach();
+
+        if(!empty($article->image)) {
+            UploadImage::delete($article->image, 'article');
+        }
+
         $article->delete();
 
         return redirect()->route('admin.articles.index');

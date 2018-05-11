@@ -2,11 +2,19 @@
 
 @section('content')
     <div class="col-md-8">
-
-    @forelse($articles as $article)
+        @if($articles->count() > 0)
+            <h1 class="my-4">
+                <small>Статьи пользователя</small>
+                {{$articles[0]->user->name}}
+            </h1>
+        @endif
+        @forelse($articles as $article)
         <!-- Blog Post -->
             <div class="card mb-4">
-                <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+                @if(!empty($article->image))
+                    <img class="card-img-top" src="{{URL::to('/').UploadImage::load('article').$article->image}}"
+                         alt="Card image cap">
+                @endif
                 <div class="card-body">
                     <h2 class="card-title">{{$article->title}}</h2>
                     <p class="card-text">{{$article->description_short}}</p>

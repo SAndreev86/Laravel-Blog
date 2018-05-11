@@ -12,7 +12,7 @@
             <div class="form-group">
                 <textarea class="form-control" name="text" rows="3"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Отправить</button>
         </form>
     </div>
 </div>

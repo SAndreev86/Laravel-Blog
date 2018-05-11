@@ -8,19 +8,16 @@
         @slot('parent') Главная @endslot
         @slot('active') Категории @endslot
         @endcomponent
-    </div>
-    <hr>
-
-    <a href="{{route('admin.category.create')}}" class="btn btn-primary pull-right">
-        <i class="fa fa-plus-square-o"></i> Создать категорию
-    </a>
-    <table class="table table-striped">
-        <thead>
+        <a href="{{route('admin.category.create')}}" class="btn btn-primary pull-right">
+            <i class="fa fa-plus-square-o"></i> Создать категорию
+        </a>
+        <table class="table table-striped">
+            <thead>
             <th>Наименование</th>
             <th>Публикация</th>
             <th class="text-right">Действие</th>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             @forelse($categories as $category)
                 <tr>
                     <td>{{$category->title}}</td>
@@ -31,7 +28,7 @@
 
                             <input type="hidden" name="_method" value="DELETE">
 
-                            {{ csrf_token() }}
+                            {{ csrf_field() }}
 
                             <a class="btn btn-default" href="{{route('admin.category.edit', $category)}}">
                                 <i class="fa fa-edit"></i>
@@ -47,16 +44,18 @@
                     </td>
                 </tr>
             @endforelse
-        </tbody>
-        <tfoot>
-        <tr>
-            <td colspan="3">
-                <ul class="pagination pull-right">
-                    {{$categories->links()}}
-                </ul>
-            </td>
-        </tr>
-        </tfoot>
-    </table>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3">
+                    <ul class="pagination pull-right">
+                        {{$categories->links()}}
+                    </ul>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+
     <!-- /.container -->
 @endsection

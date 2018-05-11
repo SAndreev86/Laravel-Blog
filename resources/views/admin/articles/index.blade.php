@@ -8,19 +8,17 @@
         @slot('parent') Главная @endslot
         @slot('active') Новости @endslot
         @endcomponent
-    </div>
-    <hr>
 
-    <a href="{{route('admin.articles.create')}}" class="btn btn-primary pull-right">
-        <i class="fa fa-plus-square-o"></i> Создать новость
-    </a>
-    <table class="table table-striped">
-        <thead>
+        <a href="{{route('admin.articles.create')}}" class="btn btn-primary pull-right">
+            <i class="fa fa-plus-square-o"></i> Создать новость
+        </a>
+        <table class="table table-striped">
+            <thead>
             <th>Наименование</th>
             <th>Публикация</th>
             <th class="text-right">Действие</th>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             @forelse($articles as $article)
                 <tr>
                     <td>{{$article->title}}</td>
@@ -31,7 +29,7 @@
 
                             <input type="hidden" name="_method" value="DELETE">
 
-                            {{ csrf_token() }}
+                            {{ csrf_field() }}
 
                             <a class="btn btn-default" href="{{route('admin.articles.edit', $article)}}">
                                 <i class="fa fa-edit"></i>
@@ -47,16 +45,18 @@
                     </td>
                 </tr>
             @endforelse
-        </tbody>
-        <tfoot>
-        <tr>
-            <td colspan="3">
-                <ul class="pagination pull-right">
-                    {{$articles->links()}}
-                </ul>
-            </td>
-        </tr>
-        </tfoot>
-    </table>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3">
+                    <ul class="pagination pull-right">
+                        {{$articles->links()}}
+                    </ul>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+
     <!-- /.container -->
 @endsection

@@ -1,6 +1,6 @@
 <div class="card my-4">
     @if($categories->count())
-        <h5 class="card-header">Categories</h5>
+        <h5 class="card-header">Категории</h5>
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-6">
