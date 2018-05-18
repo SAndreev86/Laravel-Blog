@@ -34,23 +34,27 @@
         {!! $article->description !!}
 
         <hr>
+        <!-- Categories -->
+        @foreach($categories as $category)
+            <a href="{{route("category", $category->slug)}}">{{$category->title}}</a>
+        @endforeach
+        <hr>
 
         <!-- Comments Form -->
         @include('public.partials.form', [
             'article' => $article
         ])
-    <!-- Single Comment -->
-        @forelse($comments as $comment)
 
-            <div class="media mb-4">
-                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                <div class="media-body">
-                    <h5 class="mt-0">{{$comment->user->name or 'Неведомое нечто'}}</h5>
-                    {{$comment->text}}
-                </div>
-            </div>
-        @empty
+
+    <!-- Single Comment -->
+        @if(!empty($comments))
+
+            @include('public.comments', [
+                'comments' => $comments
+            ])
+
+        @else
             <h2 class="text-center">Комментариев нет</h2>
-        @endforelse
+        @endif
     </div>
 @endsection

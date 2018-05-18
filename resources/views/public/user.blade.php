@@ -22,7 +22,12 @@
                 </div>
                 <div class="card-footer text-muted">
                     Добавлено {{$article->updated_at}} by
-                    <a href="{{route("user", $article->user->id)}}">{{ $article->user->name }}</a>
+                    <a href="{{route("user", $article->user->id)}}">{{ $article->user->name }}</a> |
+
+                    <!-- Categories -->
+                    @foreach($article->categories as $category)
+                        <a href="{{route("category", $category->slug)}}">{{$category->title}}</a>
+                    @endforeach
                 </div>
             </div>
         @empty

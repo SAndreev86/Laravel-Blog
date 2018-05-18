@@ -16,6 +16,8 @@
 
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/blog-home.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+
 
 </head>
 
@@ -24,7 +26,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="/">Блог backend разработчика</a>
+        <a class="navbar-brand" href="/"><i class="fas fa-database"></i> Backend </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -88,9 +90,9 @@
 
             <!-- Side Widget -->
             <div class="card my-4">
-                <h5 class="card-header">Заголовок</h5>
+                <h5 class="card-header">Коротко о себе</h5>
                 <div class="card-body">
-                    You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+                    Что нибудь потом придумаю
                 </div>
             </div>
 
@@ -114,6 +116,8 @@
 <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/main.js') }}"></script>
+
 
 </body>
 
